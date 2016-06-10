@@ -24,7 +24,7 @@ def t_ESPACIO(t):
 
 
 def t_HORA(t):
-    r"""^(?:\d|[01]\d|2[0-3]):[0-5]\d$"""
+    r"""(?:\d|[01]\d|2[0-3]):[0-5]\d"""
     return t
 
 
@@ -69,12 +69,14 @@ lex.lex()
 
 # parser`
 def p_oceano_con_olas(p):
-    """fecha : M C D C A E"""
-    # print(p[2], end="")
+    """P : M C D C A E H
+         | D C M C A E H"""
+    print(p.lexer.lexdata, end="")
 
 
 def p_dia(p):
     """D : DIA"""
+    p[0] = p[1]
     print(p[1], end="")
 
 
@@ -90,10 +92,15 @@ def p_separador(p):
 
 def p_mes(p):
     """M : MES"""
+    p[0] = p[1]
     print(p[1], end="")
 
 def p_anno(p):
     """A : ANNO"""
+    print(p[1], end="")
+
+def p_hora(p):
+    """H : HORA"""
     print(p[1], end="")
 
 

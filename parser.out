@@ -2,146 +2,230 @@ Created by PLY version 3.8 (http://www.dabeaz.com/ply)
 
 Unused terminals:
 
+    FORMATO
     NUM
     TIMEZONE
-    FORMATO
-    HORA
 
 Grammar
 
-Rule 0     S' -> fecha
-Rule 1     fecha -> M C D C A E
-Rule 2     D -> DIA
-Rule 3     E -> ESPACIO
-Rule 4     C -> SEPARADOR
-Rule 5     M -> MES
-Rule 6     A -> ANNO
+Rule 0     S' -> P
+Rule 1     P -> M C D C A E H
+Rule 2     P -> D C M C A E H
+Rule 3     D -> DIA
+Rule 4     E -> ESPACIO
+Rule 5     C -> SEPARADOR
+Rule 6     M -> MES
+Rule 7     A -> ANNO
+Rule 8     H -> HORA
 
 Terminals, with rules where they appear
 
-ANNO                 : 6
-DIA                  : 2
-ESPACIO              : 3
+ANNO                 : 7
+DIA                  : 3
+ESPACIO              : 4
 FORMATO              : 
-HORA                 : 
-MES                  : 5
+HORA                 : 8
+MES                  : 6
 NUM                  : 
-SEPARADOR            : 4
+SEPARADOR            : 5
 TIMEZONE             : 
 error                : 
 
 Nonterminals, with rules where they appear
 
-A                    : 1
-C                    : 1 1
-D                    : 1
-E                    : 1
-M                    : 1
-fecha                : 0
+A                    : 1 2
+C                    : 1 1 2 2
+D                    : 1 2
+E                    : 1 2
+H                    : 1 2
+M                    : 1 2
+P                    : 0
 
 Parsing method: LALR
 
 state 0
 
-    (0) S' -> . fecha
-    (1) fecha -> . M C D C A E
-    (5) M -> . MES
+    (0) S' -> . P
+    (1) P -> . M C D C A E H
+    (2) P -> . D C M C A E H
+    (6) M -> . MES
+    (3) D -> . DIA
 
     MES             shift and go to state 3
+    DIA             shift and go to state 2
 
-    M                              shift and go to state 1
-    fecha                          shift and go to state 2
+    D                              shift and go to state 1
+    M                              shift and go to state 4
+    P                              shift and go to state 5
 
 state 1
 
-    (1) fecha -> M . C D C A E
-    (4) C -> . SEPARADOR
+    (2) P -> D . C M C A E H
+    (5) C -> . SEPARADOR
 
-    SEPARADOR       shift and go to state 5
+    SEPARADOR       shift and go to state 7
 
-    C                              shift and go to state 4
+    C                              shift and go to state 6
 
 state 2
 
-    (0) S' -> fecha .
+    (3) D -> DIA .
 
+    SEPARADOR       reduce using rule 3 (D -> DIA .)
 
 
 state 3
 
-    (5) M -> MES .
+    (6) M -> MES .
 
-    SEPARADOR       reduce using rule 5 (M -> MES .)
+    SEPARADOR       reduce using rule 6 (M -> MES .)
 
 
 state 4
 
-    (1) fecha -> M C . D C A E
-    (2) D -> . DIA
+    (1) P -> M . C D C A E H
+    (5) C -> . SEPARADOR
 
-    DIA             shift and go to state 7
+    SEPARADOR       shift and go to state 7
 
-    D                              shift and go to state 6
+    C                              shift and go to state 8
 
 state 5
 
-    (4) C -> SEPARADOR .
+    (0) S' -> P .
 
-    DIA             reduce using rule 4 (C -> SEPARADOR .)
-    ANNO            reduce using rule 4 (C -> SEPARADOR .)
 
 
 state 6
 
-    (1) fecha -> M C D . C A E
-    (4) C -> . SEPARADOR
+    (2) P -> D C . M C A E H
+    (6) M -> . MES
 
-    SEPARADOR       shift and go to state 5
+    MES             shift and go to state 3
 
-    C                              shift and go to state 8
+    M                              shift and go to state 9
 
 state 7
 
-    (2) D -> DIA .
+    (5) C -> SEPARADOR .
 
-    SEPARADOR       reduce using rule 2 (D -> DIA .)
+    MES             reduce using rule 5 (C -> SEPARADOR .)
+    ANNO            reduce using rule 5 (C -> SEPARADOR .)
+    DIA             reduce using rule 5 (C -> SEPARADOR .)
 
 
 state 8
 
-    (1) fecha -> M C D C . A E
-    (6) A -> . ANNO
+    (1) P -> M C . D C A E H
+    (3) D -> . DIA
 
-    ANNO            shift and go to state 10
+    DIA             shift and go to state 2
 
-    A                              shift and go to state 9
+    D                              shift and go to state 10
 
 state 9
 
-    (1) fecha -> M C D C A . E
-    (3) E -> . ESPACIO
+    (2) P -> D C M . C A E H
+    (5) C -> . SEPARADOR
 
-    ESPACIO         shift and go to state 11
+    SEPARADOR       shift and go to state 7
 
-    E                              shift and go to state 12
+    C                              shift and go to state 11
 
 state 10
 
-    (6) A -> ANNO .
+    (1) P -> M C D . C A E H
+    (5) C -> . SEPARADOR
 
-    ESPACIO         reduce using rule 6 (A -> ANNO .)
+    SEPARADOR       shift and go to state 7
 
+    C                              shift and go to state 12
 
 state 11
 
-    (3) E -> ESPACIO .
+    (2) P -> D C M C . A E H
+    (7) A -> . ANNO
 
-    $end            reduce using rule 3 (E -> ESPACIO .)
+    ANNO            shift and go to state 13
 
+    A                              shift and go to state 14
 
 state 12
 
-    (1) fecha -> M C D C A E .
+    (1) P -> M C D C . A E H
+    (7) A -> . ANNO
 
-    $end            reduce using rule 1 (fecha -> M C D C A E .)
+    ANNO            shift and go to state 13
+
+    A                              shift and go to state 15
+
+state 13
+
+    (7) A -> ANNO .
+
+    ESPACIO         reduce using rule 7 (A -> ANNO .)
+
+
+state 14
+
+    (2) P -> D C M C A . E H
+    (4) E -> . ESPACIO
+
+    ESPACIO         shift and go to state 17
+
+    E                              shift and go to state 16
+
+state 15
+
+    (1) P -> M C D C A . E H
+    (4) E -> . ESPACIO
+
+    ESPACIO         shift and go to state 17
+
+    E                              shift and go to state 18
+
+state 16
+
+    (2) P -> D C M C A E . H
+    (8) H -> . HORA
+
+    HORA            shift and go to state 19
+
+    H                              shift and go to state 20
+
+state 17
+
+    (4) E -> ESPACIO .
+
+    HORA            reduce using rule 4 (E -> ESPACIO .)
+
+
+state 18
+
+    (1) P -> M C D C A E . H
+    (8) H -> . HORA
+
+    HORA            shift and go to state 19
+
+    H                              shift and go to state 21
+
+state 19
+
+    (8) H -> HORA .
+
+    $end            reduce using rule 8 (H -> HORA .)
+
+
+state 20
+
+    (2) P -> D C M C A E H .
+
+    $end            reduce using rule 2 (P -> D C M C A E H .)
+
+
+state 21
+
+    (1) P -> M C D C A E H .
+
+    $end            reduce using rule 1 (P -> M C D C A E H .)
 

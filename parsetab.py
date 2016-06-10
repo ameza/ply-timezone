@@ -5,9 +5,9 @@ _tabversion = '3.8'
 
 _lr_method = 'LALR'
 
-_lr_signature = '799368C3AA81D9053D834B09AE18675B'
+_lr_signature = 'ED3E00CF8F82B0BFD2601E905DC70637'
     
-_lr_action_items = {'$end':([2,11,12,],[0,-3,-1,]),'SEPARADOR':([1,3,6,7,],[5,-5,5,-2,]),'ANNO':([5,8,],[-4,10,]),'ESPACIO':([9,10,],[11,-6,]),'MES':([0,],[3,]),'DIA':([4,5,],[7,-4,]),}
+_lr_action_items = {'HORA':([16,17,18,],[19,-4,19,]),'DIA':([0,7,8,],[2,-5,2,]),'ANNO':([7,11,12,],[-5,13,13,]),'MES':([0,6,7,],[3,3,-5,]),'$end':([5,19,20,21,],[0,-8,-2,-1,]),'ESPACIO':([13,14,15,],[-7,17,17,]),'SEPARADOR':([1,2,3,4,9,10,],[7,-3,-6,7,7,7,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -16,7 +16,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'C':([1,6,],[4,8,]),'M':([0,],[1,]),'A':([8,],[9,]),'fecha':([0,],[2,]),'D':([4,],[6,]),'E':([9,],[12,]),}
+_lr_goto_items = {'D':([0,8,],[1,10,]),'H':([16,18,],[20,21,]),'A':([11,12,],[14,15,]),'M':([0,6,],[4,9,]),'C':([1,4,9,10,],[6,8,11,12,]),'P':([0,],[5,]),'E':([14,15,],[16,18,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -25,11 +25,13 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-  ("S' -> fecha","S'",1,None,None,None),
-  ('fecha -> M C D C A E','fecha',6,'p_oceano_con_olas','proyecto.py',72),
-  ('D -> DIA','D',1,'p_dia','proyecto.py',77),
-  ('E -> ESPACIO','E',1,'p_espacio','proyecto.py',82),
-  ('C -> SEPARADOR','C',1,'p_separador','proyecto.py',87),
-  ('M -> MES','M',1,'p_mes','proyecto.py',92),
-  ('A -> ANNO','A',1,'p_anno','proyecto.py',96),
+  ("S' -> P","S'",1,None,None,None),
+  ('P -> M C D C A E H','P',7,'p_oceano_con_olas','proyecto.py',72),
+  ('P -> D C M C A E H','P',7,'p_oceano_con_olas','proyecto.py',73),
+  ('D -> DIA','D',1,'p_dia','proyecto.py',78),
+  ('E -> ESPACIO','E',1,'p_espacio','proyecto.py',83),
+  ('C -> SEPARADOR','C',1,'p_separador','proyecto.py',88),
+  ('M -> MES','M',1,'p_mes','proyecto.py',93),
+  ('A -> ANNO','A',1,'p_anno','proyecto.py',97),
+  ('H -> HORA','H',1,'p_hora','proyecto.py',101),
 ]
