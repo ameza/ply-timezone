@@ -1,0 +1,147 @@
+Created by PLY version 3.8 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    NUM
+    TIMEZONE
+    FORMATO
+    HORA
+
+Grammar
+
+Rule 0     S' -> fecha
+Rule 1     fecha -> M C D C A E
+Rule 2     D -> DIA
+Rule 3     E -> ESPACIO
+Rule 4     C -> SEPARADOR
+Rule 5     M -> MES
+Rule 6     A -> ANNO
+
+Terminals, with rules where they appear
+
+ANNO                 : 6
+DIA                  : 2
+ESPACIO              : 3
+FORMATO              : 
+HORA                 : 
+MES                  : 5
+NUM                  : 
+SEPARADOR            : 4
+TIMEZONE             : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+A                    : 1
+C                    : 1 1
+D                    : 1
+E                    : 1
+M                    : 1
+fecha                : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . fecha
+    (1) fecha -> . M C D C A E
+    (5) M -> . MES
+
+    MES             shift and go to state 3
+
+    M                              shift and go to state 1
+    fecha                          shift and go to state 2
+
+state 1
+
+    (1) fecha -> M . C D C A E
+    (4) C -> . SEPARADOR
+
+    SEPARADOR       shift and go to state 5
+
+    C                              shift and go to state 4
+
+state 2
+
+    (0) S' -> fecha .
+
+
+
+state 3
+
+    (5) M -> MES .
+
+    SEPARADOR       reduce using rule 5 (M -> MES .)
+
+
+state 4
+
+    (1) fecha -> M C . D C A E
+    (2) D -> . DIA
+
+    DIA             shift and go to state 7
+
+    D                              shift and go to state 6
+
+state 5
+
+    (4) C -> SEPARADOR .
+
+    DIA             reduce using rule 4 (C -> SEPARADOR .)
+    ANNO            reduce using rule 4 (C -> SEPARADOR .)
+
+
+state 6
+
+    (1) fecha -> M C D . C A E
+    (4) C -> . SEPARADOR
+
+    SEPARADOR       shift and go to state 5
+
+    C                              shift and go to state 8
+
+state 7
+
+    (2) D -> DIA .
+
+    SEPARADOR       reduce using rule 2 (D -> DIA .)
+
+
+state 8
+
+    (1) fecha -> M C D C . A E
+    (6) A -> . ANNO
+
+    ANNO            shift and go to state 10
+
+    A                              shift and go to state 9
+
+state 9
+
+    (1) fecha -> M C D C A . E
+    (3) E -> . ESPACIO
+
+    ESPACIO         shift and go to state 11
+
+    E                              shift and go to state 12
+
+state 10
+
+    (6) A -> ANNO .
+
+    ESPACIO         reduce using rule 6 (A -> ANNO .)
+
+
+state 11
+
+    (3) E -> ESPACIO .
+
+    $end            reduce using rule 3 (E -> ESPACIO .)
+
+
+state 12
+
+    (1) fecha -> M C D C A E .
+
+    $end            reduce using rule 1 (fecha -> M C D C A E .)
+
