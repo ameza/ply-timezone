@@ -5,9 +5,9 @@ _tabversion = '3.8'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'ED3E00CF8F82B0BFD2601E905DC70637'
+_lr_signature = '56266130BFFCB1F95FAEF62FD504D714'
     
-_lr_action_items = {'HORA':([16,17,18,],[19,-4,19,]),'DIA':([0,7,8,],[2,-5,2,]),'ANNO':([7,11,12,],[-5,13,13,]),'MES':([0,6,7,],[3,3,-5,]),'$end':([5,19,20,21,],[0,-8,-2,-1,]),'ESPACIO':([13,14,15,],[-7,17,17,]),'SEPARADOR':([1,2,3,4,9,10,],[7,-3,-6,7,7,7,]),}
+_lr_action_items = {'ANNO':([7,15,16,],[-5,19,19,]),'MES':([0,7,9,],[1,-5,1,]),'SEPARADOR':([1,2,5,8,11,12,14,17,],[-7,7,7,-3,7,7,-3,-6,]),'HORA':([27,],[28,]),'ESPACIO':([18,19,20,],[21,-8,21,]),'DIGITO':([0,4,6,7,9,10,13,21,22,23,25,28,29,],[4,8,10,-5,13,14,17,-4,25,25,27,29,30,]),'$end':([3,24,26,30,],[0,-1,-2,-9,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -16,7 +16,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'D':([0,8,],[1,10,]),'H':([16,18,],[20,21,]),'A':([11,12,],[14,15,]),'M':([0,6,],[4,9,]),'C':([1,4,9,10,],[6,8,11,12,]),'P':([0,],[5,]),'E':([14,15,],[16,18,]),}
+_lr_goto_items = {'C':([2,5,11,12,],[6,9,15,16,]),'H':([22,23,],[24,26,]),'A':([15,16,],[18,20,]),'E':([18,20,],[22,23,]),'M':([0,9,],[2,12,]),'P':([0,],[3,]),'D':([0,6,],[5,11,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -28,10 +28,11 @@ _lr_productions = [
   ("S' -> P","S'",1,None,None,None),
   ('P -> M C D C A E H','P',7,'p_oceano_con_olas','proyecto.py',72),
   ('P -> D C M C A E H','P',7,'p_oceano_con_olas','proyecto.py',73),
-  ('D -> DIA','D',1,'p_dia','proyecto.py',78),
-  ('E -> ESPACIO','E',1,'p_espacio','proyecto.py',83),
-  ('C -> SEPARADOR','C',1,'p_separador','proyecto.py',88),
-  ('M -> MES','M',1,'p_mes','proyecto.py',93),
-  ('A -> ANNO','A',1,'p_anno','proyecto.py',97),
-  ('H -> HORA','H',1,'p_hora','proyecto.py',101),
+  ('D -> DIGITO DIGITO','D',2,'p_dia','proyecto.py',78),
+  ('E -> ESPACIO','E',1,'p_espacio','proyecto.py',92),
+  ('C -> SEPARADOR','C',1,'p_separador','proyecto.py',97),
+  ('M -> DIGITO DIGITO','M',2,'p_mes','proyecto.py',102),
+  ('M -> MES','M',1,'p_mes','proyecto.py',103),
+  ('A -> ANNO','A',1,'p_anno','proyecto.py',121),
+  ('H -> DIGITO DIGITO HORA DIGITO DIGITO','H',5,'p_hora','proyecto.py',126),
 ]
