@@ -5,9 +5,9 @@ _tabversion = '3.8'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'E4A162725DE2FFAA083831295A587C0B'
+_lr_signature = '1AFAA8CEF19833E112F0ACC8B025159E'
     
-_lr_action_items = {'SEPARADOR':([3,4,5,6,10,11,12,],[8,8,-7,-4,8,8,8,]),'DIGITO':([0,2,7,8,9,20,21,22,23,24,29,30,],[2,6,2,-6,2,-5,24,24,24,28,30,31,]),'$end':([1,25,26,27,31,],[0,-1,-3,-2,-9,]),'MES':([0,8,9,],[5,-6,5,]),'HORA':([28,],[29,]),'ANNO':([8,13,14,15,],[-6,17,17,17,]),'ESPACIO':([16,17,18,19,],[20,-8,20,20,]),}
+_lr_action_items = {'$end':([5,15,24,],[0,-11,-1,]),'HORA':([34,],[35,]),'TIMEZONE':([9,10,19,],[15,-6,15,]),'ANNO':([7,18,20,21,],[-7,23,23,23,]),'SEPARADOR':([1,3,6,12,13,16,17,],[7,7,-8,-5,7,7,7,]),'MES':([0,7,11,],[6,-7,6,]),'DIGITO':([0,4,7,8,10,11,27,28,29,30,35,36,],[4,12,-7,4,-6,4,30,30,30,34,36,37,]),'ESPACIO':([2,14,15,22,23,25,26,31,32,33,37,],[10,10,-11,10,-9,10,10,-2,-4,-3,-10,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -16,7 +16,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'A':([13,14,15,],[16,18,19,]),'C':([3,4,10,11,12,],[7,9,13,14,15,]),'P':([0,],[1,]),'H':([21,22,23,],[25,26,27,]),'M':([0,9,],[3,11,]),'E':([16,18,19,],[21,22,23,]),'D':([0,7,9,],[4,10,12,]),}
+_lr_goto_items = {'E':([2,14,22,25,26,],[9,19,27,28,29,]),'T':([9,19,],[14,24,]),'M':([0,11,],[1,16,]),'A':([18,20,21,],[22,25,26,]),'P':([0,],[2,]),'D':([0,8,11,],[3,13,17,]),'H':([27,28,29,],[31,32,33,]),'S':([0,],[5,]),'C':([1,3,13,16,17,],[8,11,18,20,21,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -25,14 +25,16 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-  ("S' -> P","S'",1,None,None,None),
-  ('P -> M C D C A E H','P',7,'p_oceano_con_olas','proyecto.py',72),
-  ('P -> D C D C A E H','P',7,'p_oceano_con_olas','proyecto.py',73),
-  ('P -> D C M C A E H','P',7,'p_oceano_con_olas','proyecto.py',74),
-  ('D -> DIGITO DIGITO','D',2,'p_doble_digito','proyecto.py',79),
-  ('E -> ESPACIO','E',1,'p_espacio','proyecto.py',83),
-  ('C -> SEPARADOR','C',1,'p_separador','proyecto.py',88),
-  ('M -> MES','M',1,'p_mes','proyecto.py',93),
-  ('A -> ANNO','A',1,'p_anno','proyecto.py',103),
-  ('H -> DIGITO DIGITO HORA DIGITO DIGITO','H',5,'p_hora','proyecto.py',108),
+  ("S' -> S","S'",1,None,None,None),
+  ('S -> P E T E T','S',5,'p_fecha_conversion','proyecto.py',74),
+  ('P -> M C D C A E H','P',7,'p_fecha_hora','proyecto.py',82),
+  ('P -> D C D C A E H','P',7,'p_fecha_hora','proyecto.py',83),
+  ('P -> D C M C A E H','P',7,'p_fecha_hora','proyecto.py',84),
+  ('D -> DIGITO DIGITO','D',2,'p_doble_digito','proyecto.py',115),
+  ('E -> ESPACIO','E',1,'p_espacio','proyecto.py',121),
+  ('C -> SEPARADOR','C',1,'p_separador','proyecto.py',127),
+  ('M -> MES','M',1,'p_mes','proyecto.py',133),
+  ('A -> ANNO','A',1,'p_anno','proyecto.py',139),
+  ('H -> DIGITO DIGITO HORA DIGITO DIGITO','H',5,'p_hora','proyecto.py',145),
+  ('T -> TIMEZONE','T',1,'p_timezone','proyecto.py',160),
 ]

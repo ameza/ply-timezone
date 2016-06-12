@@ -19,7 +19,7 @@ def t_DIGITO(t):
 
 
 def t_ESPACIO(t):
-    r"""\s+"""
+    r"""\s"""
     return t
 
 
@@ -34,7 +34,7 @@ def t_SEPARADOR(t):
 
 
 def t_TIMEZONE(t):
-    r"""^(A|E|C|M|P|AK|H)ST|UTC$"""
+    r"""(A|E|C|M|P|AK|H)ST|UTC"""
     return t
 
 
@@ -69,6 +69,15 @@ lex.lex()
 
 
 # parser`
+
+def p_fecha_conversion(p):
+    """S : P E T E T"""
+
+
+
+
+
+
 def p_fecha_hora(p):
     """P : M C D C A E H
          | D C D C A E H
@@ -92,8 +101,10 @@ def p_fecha_hora(p):
         else:
             formato = "%d" + p[2] + "%m" + p[4] + "%Y %H:%M"
 
-        fecha = datetime.datetime.strptime(p.lexer.lexdata, formato)
+        mifecha = p[1]+p[2]+p[3]+p[4]+p[5]+p[6]+p[7]
+        fecha = datetime.datetime.strptime(mifecha, formato)
         print("\nFormato reconocido {}\nFecha Reconocida: {}".format(formato, fecha))
+        p[0] = fecha
     except ValueError:
        # raise
         print("\nLa fecha ingresada es inválida\n")
@@ -108,6 +119,7 @@ def p_doble_digito(p):
 
 def p_espacio(p):
     """E : ESPACIO"""
+    p[0] = p[1]
     print(p[1], end="")
 
 
@@ -125,11 +137,12 @@ def p_mes(p):
 
 def p_anno(p):
     """A : ANNO"""
+    p[0] = p[1]
     print(p[1], end="")
 
 
 def p_hora(p):
-    """H : DIGITO DIGITO HORA DIGITO DIGITO  """
+    """H : DIGITO DIGITO HORA DIGITO DIGITO"""
     hora = int(p[1] + p[2])
     if -1 < hora < 24:
         minuto = int(p[4] + p[5])
@@ -138,15 +151,18 @@ def p_hora(p):
             print(p[0], end="")
         else:
             print("Los minutos deben estar entre 00 y 59")
-        p.lexer.skip(1)
+            p.lexer.skip(1)
     else:
         print("La hora debe estar entre 00 y 23")
         p.lexer.skip(1)
 
-
+def p_timezone(p):
+    """T : TIMEZONE"""
+    p[0] = p[1]
+    print(p[1], end="")
 
 def p_error(p):
-    print("\n¡Error sintáctico!\n")
+    print("\n¡Error sintáctico! \n")
 
 
 import ply.yacc as yacc
