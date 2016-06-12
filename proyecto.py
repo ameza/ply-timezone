@@ -53,7 +53,7 @@ def t_NUM(t):
 
 
 def t_error(t):
-    print("¡Error léxico!")
+    print("\n!Error léxico!\n")
     t.lexer.skip(1)
 
 
@@ -63,30 +63,48 @@ def t_newline(t):
 
 
 import ply.lex as lex
+import datetime
 
 lex.lex()
 
 
 # parser`
-def p_oceano_con_olas(p):
+def p_fecha_hora(p):
     """P : M C D C A E H
+         | D C D C A E H
          | D C M C A E H"""
- #   print(p.lexer.lexdata, end="")
-
-
-def p_dia(p):
-    """D : DIGITO DIGITO"""
     try:
-        total = int(p[1]+p[2])
-        if 0 < total < 32:
-            p[0] = total
-            print(p[0], end="")
+
+        if p[1].isalpha():
+            if len(p[1])>3:
+                formato = "%B"+p[2]+"%d"+p[4]+"%Y %H:%M"
+            else:
+                formato = "%b"+p[2]+"%d"+p[4]+"%Y %H:%M"
+        elif p[3].isalpha():
+            if len(p[3]) > 3:
+                formato = "%d" + p[2] + "%B" + p[4] + "%Y %H:%M"
+            else:
+                formato = "%d" + p[2] + "%b" + p[4] + "%Y %H:%M"
+        elif 0 < int(p[1]) < 13:
+            formato = "%m" + p[2] + "%d" + p[4] + "%Y %H:%M"
+        elif 0 < int(p[1]) < 13:
+            formato = "%d" + p[2] + "%m" + p[4] + "%Y %H:%M"
         else:
-            print("El día debe estar entre 1 y 31")
-            p.lexer.skip(1)
+            formato = "%d" + p[2] + "%m" + p[4] + "%Y %H:%M"
+
+        fecha = datetime.datetime.strptime(p.lexer.lexdata, formato)
+        print("\nFormato reconocido {}\nFecha Reconocida: {}".format(formato, fecha))
     except ValueError:
-        print("Invalid integer", total)
-        p[0] = 0
+       # raise
+        print("\nLa fecha ingresada es inválida\n")
+        p.lexer.skip(1)
+
+
+def p_doble_digito(p):
+    """D : DIGITO DIGITO"""
+    p[0]=p[1]+p[2]
+    print(p[0], end="")
+
 
 def p_espacio(p):
     """E : ESPACIO"""
@@ -95,26 +113,14 @@ def p_espacio(p):
 
 def p_separador(p):
     """C : SEPARADOR"""
+    p[0] = p[1]
     print(p[1], end="")
 
 
 def p_mes(p):
-    """M : DIGITO DIGITO
-         | MES"""
-    try:
-        if p[1].isalpha():
-            p[0] = p[1]
-            print(p[0], end="")
-        else:
-            total = int(p[1]+p[2])
-            if 0 < total < 13:
-                p[0] = total
-                print(p[0], end="")
-            else:
-                print("El mes debe estar entre 1 y 12")
-                p.lexer.skip(1)
-    except ValueError:
-        p[0] = p[0]
+    """M : MES"""
+    p[0] = p[1]
+    print(p[0], end="")
 
 
 def p_anno(p):
@@ -140,7 +146,7 @@ def p_hora(p):
 
 
 def p_error(p):
-    print("¡Error sintáctico!")
+    print("\n¡Error sintáctico!\n")
 
 
 import ply.yacc as yacc
@@ -150,7 +156,7 @@ yacc.yacc()
 while 1:
     try:
         print("\n")
-        oceano = input("oceano>")
+        oceano = input("tzparser>")
     except EOFError:
         break
     if not oceano:

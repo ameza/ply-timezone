@@ -5,9 +5,9 @@ _tabversion = '3.8'
 
 _lr_method = 'LALR'
 
-_lr_signature = '56266130BFFCB1F95FAEF62FD504D714'
+_lr_signature = 'E4A162725DE2FFAA083831295A587C0B'
     
-_lr_action_items = {'ANNO':([7,15,16,],[-5,19,19,]),'MES':([0,7,9,],[1,-5,1,]),'SEPARADOR':([1,2,5,8,11,12,14,17,],[-7,7,7,-3,7,7,-3,-6,]),'HORA':([27,],[28,]),'ESPACIO':([18,19,20,],[21,-8,21,]),'DIGITO':([0,4,6,7,9,10,13,21,22,23,25,28,29,],[4,8,10,-5,13,14,17,-4,25,25,27,29,30,]),'$end':([3,24,26,30,],[0,-1,-2,-9,]),}
+_lr_action_items = {'SEPARADOR':([3,4,5,6,10,11,12,],[8,8,-7,-4,8,8,8,]),'DIGITO':([0,2,7,8,9,20,21,22,23,24,29,30,],[2,6,2,-6,2,-5,24,24,24,28,30,31,]),'$end':([1,25,26,27,31,],[0,-1,-3,-2,-9,]),'MES':([0,8,9,],[5,-6,5,]),'HORA':([28,],[29,]),'ANNO':([8,13,14,15,],[-6,17,17,17,]),'ESPACIO':([16,17,18,19,],[20,-8,20,20,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -16,7 +16,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'C':([2,5,11,12,],[6,9,15,16,]),'H':([22,23,],[24,26,]),'A':([15,16,],[18,20,]),'E':([18,20,],[22,23,]),'M':([0,9,],[2,12,]),'P':([0,],[3,]),'D':([0,6,],[5,11,]),}
+_lr_goto_items = {'A':([13,14,15,],[16,18,19,]),'C':([3,4,10,11,12,],[7,9,13,14,15,]),'P':([0,],[1,]),'H':([21,22,23,],[25,26,27,]),'M':([0,9,],[3,11,]),'E':([16,18,19,],[21,22,23,]),'D':([0,7,9,],[4,10,12,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,12 +27,12 @@ del _lr_goto_items
 _lr_productions = [
   ("S' -> P","S'",1,None,None,None),
   ('P -> M C D C A E H','P',7,'p_oceano_con_olas','proyecto.py',72),
-  ('P -> D C M C A E H','P',7,'p_oceano_con_olas','proyecto.py',73),
-  ('D -> DIGITO DIGITO','D',2,'p_dia','proyecto.py',78),
-  ('E -> ESPACIO','E',1,'p_espacio','proyecto.py',92),
-  ('C -> SEPARADOR','C',1,'p_separador','proyecto.py',97),
-  ('M -> DIGITO DIGITO','M',2,'p_mes','proyecto.py',102),
-  ('M -> MES','M',1,'p_mes','proyecto.py',103),
-  ('A -> ANNO','A',1,'p_anno','proyecto.py',121),
-  ('H -> DIGITO DIGITO HORA DIGITO DIGITO','H',5,'p_hora','proyecto.py',126),
+  ('P -> D C D C A E H','P',7,'p_oceano_con_olas','proyecto.py',73),
+  ('P -> D C M C A E H','P',7,'p_oceano_con_olas','proyecto.py',74),
+  ('D -> DIGITO DIGITO','D',2,'p_doble_digito','proyecto.py',79),
+  ('E -> ESPACIO','E',1,'p_espacio','proyecto.py',83),
+  ('C -> SEPARADOR','C',1,'p_separador','proyecto.py',88),
+  ('M -> MES','M',1,'p_mes','proyecto.py',93),
+  ('A -> ANNO','A',1,'p_anno','proyecto.py',103),
+  ('H -> DIGITO DIGITO HORA DIGITO DIGITO','H',5,'p_hora','proyecto.py',108),
 ]
