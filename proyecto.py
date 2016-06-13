@@ -1,3 +1,7 @@
+import ply.lex as lex
+import datetime
+import ply.yacc as yacc
+
 # coding=utf-8
 # lexer
 tokens = ('ANNO', 'DIGITO', 'MES', 'HORA', 'SEPARADOR', 'TIMEZONE', 'ESPACIO', 'FORMATO', 'NUM')
@@ -39,12 +43,12 @@ def t_TIMEZONE(t):
 
 
 def t_FORMATO(t):
-    r"""^(mm\/dd|dd\/mm)\/yyyy$"""
+    r"""(mm\/dd|dd\/mm)\/yyyy"""
     return t
 
 
 def t_NUM(t):
-    r"""^([1-9][0-9]{0,2}|1000)$"""
+    r"""ADD\s([1-9][0-9]{0,2}|1000)"""
     return t
 
 
@@ -62,8 +66,7 @@ def t_newline(t):
     t.lexer.lineno += t.value.count("\n")
 
 
-import ply.lex as lex
-import datetime
+
 
 lex.lex()
 
@@ -71,9 +74,22 @@ lex.lex()
 # parser`
 
 def p_fecha_conversion(p):
-    """S : P E T E T"""
-
-
+    """S : P X X F K
+         | P X X K F
+         | P X E P X"""
+    if p[3] == " ":
+        print('diferencia')
+    else:
+        if p[4] is not None:
+            if p[4].isdigit():
+                print("p4 es add num")
+            else:
+                print("p4 es format")
+        if p[5] is not None:
+            if p[5].isdigit():
+                print("p5 es add num")
+            else:
+                print("p5 es format")
 
 
 
@@ -85,7 +101,7 @@ def p_fecha_hora(p):
     try:
 
         if p[1].isalpha():
-            if len(p[1])>3:
+            if len(p[1]) > 3:
                 formato = "%B"+p[2]+"%d"+p[4]+"%Y %H:%M"
             else:
                 formato = "%b"+p[2]+"%d"+p[4]+"%Y %H:%M"
@@ -106,10 +122,14 @@ def p_fecha_hora(p):
         print("\nFormato reconocido {}\nFecha Reconocida: {}".format(formato, fecha))
         p[0] = fecha
     except ValueError:
-       # raise
+        # raise
         print("\nLa fecha ingresada es inválida\n")
         p.lexer.skip(1)
 
+
+def p_espacio_timezone(p):
+    """X : E T"""
+    p[0] = p[2]
 
 def p_doble_digito(p):
     """D : DIGITO DIGITO"""
@@ -121,6 +141,22 @@ def p_espacio(p):
     """E : ESPACIO"""
     p[0] = p[1]
     print(p[1], end="")
+
+
+def p_formato(p):
+    """F : E FORMATO
+         |"""
+    if len(p) > 1:
+        p[0] = p[1]+p[2]
+        print(p[0], end="")
+
+
+def p_anadir_dias(p):
+    """K : E NUM
+         | """
+    if len(p) > 1:
+            p[0] = p[2][4:]
+            print(p[0], end="")
 
 
 def p_separador(p):
@@ -156,16 +192,15 @@ def p_hora(p):
         print("La hora debe estar entre 00 y 23")
         p.lexer.skip(1)
 
+
 def p_timezone(p):
     """T : TIMEZONE"""
     p[0] = p[1]
-    print(p[1], end="")
+
 
 def p_error(p):
     print("\n¡Error sintáctico! \n")
 
-
-import ply.yacc as yacc
 
 yacc.yacc()
 
