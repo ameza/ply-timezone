@@ -77,19 +77,21 @@ def p_fecha_conversion(p):
     """S : P X X F K
          | P X X K F
          | P X E P X"""
+    print("\nConvirtiendo de {} a {}".format(p[2], p[3]), end='')
     if p[3] == " ":
         print('diferencia')
     else:
         if p[4] is not None:
             if p[4].isdigit():
-                print("p4 es add num")
+                print("\nSe añadirán {} días a resultado".format(p[4]), end='')
             else:
-                print("p4 es format")
+                print("\nFormato de salida: {}".format(p[4]), end='')
         if p[5] is not None:
             if p[5].isdigit():
-                print("p5 es add num")
+                print("\nSe añadirán {} días a resultado".format(p[5]), end='')
             else:
-                print("p5 es format")
+                print("\nFormato de salida: {}".format(p[5]), end='')
+
 
 
 
@@ -119,7 +121,7 @@ def p_fecha_hora(p):
 
         mifecha = p[1]+p[2]+p[3]+p[4]+p[5]+p[6]+p[7]
         fecha = datetime.datetime.strptime(mifecha, formato)
-        print("\nFormato reconocido {}\nFecha Reconocida: {}".format(formato, fecha))
+        print("\nFormato reconocido {}\nFecha Reconocida: {}".format(formato, fecha), end='')
         p[0] = fecha
     except ValueError:
         # raise
@@ -134,13 +136,13 @@ def p_espacio_timezone(p):
 def p_doble_digito(p):
     """D : DIGITO DIGITO"""
     p[0]=p[1]+p[2]
-    print(p[0], end="")
+    #print(p[0], end="")
 
 
 def p_espacio(p):
     """E : ESPACIO"""
     p[0] = p[1]
-    print(p[1], end="")
+    #print(p[1], end="")
 
 
 def p_formato(p):
@@ -148,7 +150,6 @@ def p_formato(p):
          |"""
     if len(p) > 1:
         p[0] = p[1]+p[2]
-        print(p[0], end="")
 
 
 def p_anadir_dias(p):
@@ -156,25 +157,25 @@ def p_anadir_dias(p):
          | """
     if len(p) > 1:
             p[0] = p[2][4:]
-            print(p[0], end="")
+
 
 
 def p_separador(p):
     """C : SEPARADOR"""
     p[0] = p[1]
-    print(p[1], end="")
+    #print(p[1], end="")
 
 
 def p_mes(p):
     """M : MES"""
     p[0] = p[1]
-    print(p[0], end="")
+    #print(p[0], end="")
 
 
 def p_anno(p):
     """A : ANNO"""
     p[0] = p[1]
-    print(p[1], end="")
+    #print(p[1], end="")
 
 
 def p_hora(p):
@@ -184,7 +185,7 @@ def p_hora(p):
         minuto = int(p[4] + p[5])
         if -1 < minuto < 60:
             p[0] = p[1]+p[2]+p[3]+p[4]+p[5]
-            print(p[0], end="")
+            #print(p[0], end="")
         else:
             print("Los minutos deben estar entre 00 y 59")
             p.lexer.skip(1)
