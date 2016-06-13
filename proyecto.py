@@ -119,13 +119,19 @@ def p_fecha_hora(p):
         else:
             formato = "%d" + p[2] + "%m" + p[4] + "%Y %H:%M"
 
-        mifecha = p[1]+p[2]+p[3]+p[4]+p[5]+p[6]+p[7]
+        # hora por defecto en caso de que el parsing de la hora fuera inválido
+        if p[7] is None:
+            hora = "00:00"
+        else:
+            hora = p[7]
+        mifecha = p[1]+p[2]+p[3]+p[4]+p[5]+p[6]+hora
         fecha = datetime.datetime.strptime(mifecha, formato)
         print("\nFormato reconocido {}\nFecha Reconocida: {}".format(formato, fecha), end='')
         p[0] = fecha
     except ValueError:
         # raise
         print("\nLa fecha ingresada es inválida\n")
+        p[0] = 0
         p.lexer.skip(1)
 
 
@@ -133,16 +139,17 @@ def p_espacio_timezone(p):
     """X : E T"""
     p[0] = p[2]
 
+
 def p_doble_digito(p):
     """D : DIGITO DIGITO"""
     p[0]=p[1]+p[2]
-    #print(p[0], end="")
+    # print(p[0], end="")
 
 
 def p_espacio(p):
     """E : ESPACIO"""
     p[0] = p[1]
-    #print(p[1], end="")
+    # print(p[1], end="")
 
 
 def p_formato(p):
@@ -187,9 +194,11 @@ def p_hora(p):
             p[0] = p[1]+p[2]+p[3]+p[4]+p[5]
             #print(p[0], end="")
         else:
+            #raise ValueError("Los minutos deben estar entre 00 y 59")
             print("Los minutos deben estar entre 00 y 59")
             p.lexer.skip(1)
     else:
+        #raise ValueError("La hora debe estar entre 00 y 23")
         print("La hora debe estar entre 00 y 23")
         p.lexer.skip(1)
 
