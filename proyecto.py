@@ -2,7 +2,7 @@ import ply.lex as lex
 import datetime
 import ply.yacc as yacc
 import simpledate
-from datetime import timedelta
+
 
 # coding=utf-8
 # lexer
@@ -237,7 +237,7 @@ yacc.yacc()
 while 1:
     try:
         print("\n")
-        oceano = input("tzparser>")
+        oceano = input("tzparser_andres>")
     except EOFError:
         break
     if not oceano:

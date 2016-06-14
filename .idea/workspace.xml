@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="863d5964-38c0-4071-ace4-1248ff5b66bc" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/proyecto.py" afterPath="$PROJECT_DIR$/proyecto.py" />
     </list>
     <ignored path="PLY.iws" />
@@ -38,8 +37,8 @@
       <file leaf-file-name="proyecto.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/proyecto.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="37" column="16" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
+            <state relative-caret-position="2533">
+              <caret line="239" column="39" selection-start-line="239" selection-start-column="39" selection-end-line="239" selection-end-column="39" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -528,7 +527,14 @@
       <option name="project" value="LOCAL" />
       <updated>1465807824169</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Conversión de timezones funcionando">
+      <created>1465889325485</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1465889325485</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -592,7 +598,8 @@
     <MESSAGE value="Formato y add num reconocidos&#10;" />
     <MESSAGE value="Orden de formato correcto&#10;" />
     <MESSAGE value="Bug de hora reparado&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bug de hora reparado&#10;" />
+    <MESSAGE value="Conversión de timezones funcionando" />
+    <option name="LAST_COMMIT_MESSAGE" value="Conversión de timezones funcionando" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -982,8 +989,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/proyecto.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="37" column="16" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
+        <state relative-caret-position="2533">
+          <caret line="239" column="39" selection-start-line="239" selection-start-column="39" selection-end-line="239" selection-end-column="39" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
           </folding>
