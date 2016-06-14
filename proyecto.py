@@ -1,6 +1,8 @@
 import ply.lex as lex
 import datetime
 import ply.yacc as yacc
+import simpledate
+from datetime import timedelta
 
 # coding=utf-8
 # lexer
@@ -81,19 +83,37 @@ def p_fecha_conversion(p):
     if p[3] == " ":
         print('diferencia')
     else:
+        formatoSalida = '%B/%d/%Y %H:%M'
+        anadirTotal = 0
         if p[4] is not None:
             if p[4].isdigit():
                 print("\nSe añadirán {} días a resultado".format(p[4]), end='')
+                anadirTotal = p[4]
             else:
                 print("\nFormato de salida: {}".format(p[4]), end='')
+                if p[4] == ' mm/dd/yyyy':
+                    formatoSalida = '%m/%d/%Y %H:%M'
+                else:
+                    formatoSalida = '%d/%m/%Y %H:%M'
         if p[5] is not None:
             if p[5].isdigit():
                 print("\nSe añadirán {} días a resultado".format(p[5]), end='')
+                anadirTotal = p[5]
             else:
                 print("\nFormato de salida: {}".format(p[5]), end='')
+                if p[5] == ' mm/dd/yyyy':
+                    formatoSalida = '%m/%d/%Y %H:%M'
+                else:
+                    formatoSalida = '%d/%m/%Y %H:%M'
 
-
-
+        fechaFinal = p[1] + datetime.timedelta(days=int(anadirTotal))
+        if p[3] != 'UTC':
+            dateConversion = simpledate.SimpleDate('{} {}'.format(fechaFinal, p[2])).convert(tz='{}'.format(p[3]), country='US', unsafe=True)
+            print('\nResultado:', dateConversion.datetime.strftime(formatoSalida), p[3])
+        else:
+            dateConversion = simpledate.best_guess_utc('{} {}'.format(fechaFinal, p[2]), debug=False)
+            print('\nResultado:', dateConversion.strftime(formatoSalida), p[3])
+        print('\nDST No se encuentra activo en esta conversión')
 
 
 def p_fecha_hora(p):
@@ -126,7 +146,7 @@ def p_fecha_hora(p):
             hora = p[7]
         mifecha = p[1]+p[2]+p[3]+p[4]+p[5]+p[6]+hora
         fecha = datetime.datetime.strptime(mifecha, formato)
-        print("\nFormato reconocido {}\nFecha Reconocida: {}".format(formato, fecha), end='')
+        print("\nFormato reconocido: {}\nFecha Reconocida: {}".format(formato, fecha), end='')
         p[0] = fecha
     except ValueError:
         # raise
