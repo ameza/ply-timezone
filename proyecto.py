@@ -35,7 +35,7 @@ def t_HORA(t):
 
 
 def t_SEPARADOR(t):
-    r"""-|,|\/|\s"""
+    r"""-|,|\/"""
     return t
 
 
@@ -78,11 +78,13 @@ lex.lex()
 def p_fecha_conversion(p):
     """S : P X X F K
          | P X X K F
+         | P X X F
+         | P X X K
          | P X E P X"""
-    print("\nConvirtiendo de {} a {}".format(p[2], p[3]), end='')
     if p[3] == " ":
         print('diferencia')
     else:
+        print("\nConvirtiendo de {} a {}".format(p[2], p[3]), end='')
         formatoSalida = '%B/%d/%Y %H:%M'
         anadirTotal = 0
         if p[4] is not None:
@@ -95,16 +97,18 @@ def p_fecha_conversion(p):
                     formatoSalida = '%m/%d/%Y %H:%M'
                 else:
                     formatoSalida = '%d/%m/%Y %H:%M'
-        if p[5] is not None:
-            if p[5].isdigit():
-                print("\nSe añadirán {} días a resultado".format(p[5]), end='')
-                anadirTotal = p[5]
-            else:
-                print("\nFormato de salida: {}".format(p[5]), end='')
-                if p[5] == ' mm/dd/yyyy':
-                    formatoSalida = '%m/%d/%Y %H:%M'
+        if len(p) > 5:
+            if p[5] is not None:
+                if p[5].isdigit():
+                    print("\nSe añadirán {} días a resultado".format(p[5]), end='')
+                    anadirTotal = p[5]
                 else:
-                    formatoSalida = '%d/%m/%Y %H:%M'
+                    print("\nFormato de salida: {}".format(p[5]), end='')
+                    if p[5] == ' mm/dd/yyyy':
+                        formatoSalida = '%m/%d/%Y %H:%M'
+                    else:
+                        formatoSalida = '%d/%m/%Y %H:%M'
+
 
         fechaFinal = p[1] + datetime.timedelta(days=int(anadirTotal))
         if p[3] != 'UTC':
@@ -118,7 +122,10 @@ def p_fecha_conversion(p):
 
 def p_fecha_hora(p):
     """P : M C D C A E H
+         | M E D E A E H
          | D C D C A E H
+         | D E D E A E H
+         | D E M E A E H
          | D C M C A E H"""
     try:
 
@@ -173,15 +180,15 @@ def p_espacio(p):
 
 
 def p_formato(p):
-    """F : E FORMATO
-         |"""
+    """F : E FORMATO"""
+
     if len(p) > 1:
         p[0] = p[1]+p[2]
 
 
 def p_anadir_dias(p):
-    """K : E NUM
-         | """
+    """K : E NUM"""
+
     if len(p) > 1:
             p[0] = p[2][4:]
 
@@ -237,9 +244,9 @@ yacc.yacc()
 while 1:
     try:
         print("\n")
-        oceano = input("tzparser_andres>")
+        tzparser = input("tzparser_andres>")
     except EOFError:
         break
-    if not oceano:
+    if not tzparser:
         continue
-    yacc.parse(oceano)
+    yacc.parse(tzparser)

@@ -5,9 +5,9 @@ _tabversion = '3.8'
 
 _lr_method = 'LALR'
 
-_lr_signature = '383441ADA42C02CE12D692FCE96C637D'
+_lr_signature = 'D62FE18F461F1CA48EF4370CC7A3CDDC'
     
-_lr_action_items = {'DIGITO':([0,4,7,8,9,13,19,39,40,41,43,47,48,],[4,10,-14,4,4,-9,4,43,43,43,46,48,49,]),'ESPACIO':([5,12,17,18,20,24,25,27,28,29,30,31,35,36,42,44,45,49,],[13,13,-18,-7,13,13,13,13,13,-16,13,13,-12,-10,-5,-6,-4,-17,]),'NUM':([13,26,33,],[-9,35,35,]),'ANNO':([7,21,22,23,],[-14,29,29,29,]),'TIMEZONE':([11,13,19,],[17,-9,17,]),'$end':([2,17,18,20,25,27,32,34,35,36,37,],[0,-18,-7,-11,-13,-11,-3,-1,-12,-10,-2,]),'SEPARADOR':([1,3,6,10,14,15,16,],[7,7,-15,-8,7,7,7,]),'HORA':([46,],[47,]),'FORMATO':([13,26,38,],[-9,36,36,]),'MES':([0,7,8,13,19,],[6,-14,6,-9,6,]),}
+_lr_action_items = {'NUM':([9,28,37,],[-14,40,40,]),'HORA':([63,],[64,]),'$end':([3,18,19,26,27,36,38,40,41,42,],[0,-12,-21,-3,-4,-1,-2,-16,-15,-5,]),'DIGITO':([0,2,9,11,12,13,14,15,17,50,51,52,53,54,55,56,64,65,],[2,7,-14,-17,2,2,2,2,2,56,56,56,56,56,56,63,65,66,]),'MES':([0,9,11,12,13,17,],[1,-14,-17,1,1,1,]),'FORMATO':([9,28,39,],[-14,41,41,]),'ANNO':([9,11,30,31,32,33,34,35,],[-14,-17,43,43,43,43,43,43,]),'ESPACIO':([1,4,5,6,7,8,16,18,19,20,21,24,26,27,29,40,41,43,44,45,46,47,48,49,57,58,59,60,61,62,66,],[-18,9,9,9,-13,9,9,-12,-21,9,9,9,9,9,9,-16,-15,-19,9,9,9,9,9,9,-9,-10,-11,-8,-7,-6,-20,]),'TIMEZONE':([9,10,17,],[-14,19,19,]),'SEPARADOR':([1,5,6,7,22,23,25,],[-18,11,11,-13,11,11,11,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -16,7 +16,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'F':([20,27,],[25,37,]),'E':([5,12,20,24,25,27,28,30,31,],[11,19,26,11,33,38,39,40,41,]),'D':([0,8,9,19,],[1,14,16,1,]),'K':([20,25,],[27,34,]),'S':([0,],[2,]),'H':([39,40,41,],[42,44,45,]),'M':([0,8,19,],[3,15,3,]),'C':([1,3,14,15,16,],[8,9,21,22,23,]),'A':([21,22,23,],[28,30,31,]),'X':([5,12,24,],[12,20,32,]),'T':([11,19,],[18,18,]),'P':([0,19,],[5,24,]),}
+_lr_goto_items = {'F':([16,27,],[26,38,]),'H':([50,51,52,53,54,55,],[57,58,59,60,61,62,]),'K':([16,26,],[27,36,]),'S':([0,],[3,]),'E':([4,5,6,8,16,20,21,24,26,27,29,44,45,46,47,48,49,],[10,12,14,17,28,30,31,34,37,39,10,50,51,52,53,54,55,]),'X':([4,8,29,],[8,16,42,]),'A':([30,31,32,33,34,35,],[44,45,46,47,48,49,]),'T':([10,17,],[18,18,]),'P':([0,17,],[4,29,]),'D':([0,12,13,14,15,17,],[5,20,23,24,25,5,]),'M':([0,12,13,17,],[6,21,22,6,]),'C':([5,6,22,23,25,],[13,15,32,33,35,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -26,22 +26,25 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> S","S'",1,None,None,None),
-  ('S -> P X X F K','S',5,'p_fecha_conversion','proyecto.py',77),
-  ('S -> P X X K F','S',5,'p_fecha_conversion','proyecto.py',78),
-  ('S -> P X E P X','S',5,'p_fecha_conversion','proyecto.py',79),
-  ('P -> M C D C A E H','P',7,'p_fecha_hora','proyecto.py',83),
-  ('P -> D C D C A E H','P',7,'p_fecha_hora','proyecto.py',84),
-  ('P -> D C M C A E H','P',7,'p_fecha_hora','proyecto.py',85),
-  ('X -> E T','X',2,'p_espacio_timezone','proyecto.py',116),
-  ('D -> DIGITO DIGITO','D',2,'p_doble_digito','proyecto.py',122),
-  ('E -> ESPACIO','E',1,'p_espacio','proyecto.py',128),
-  ('F -> E FORMATO','F',2,'p_formato','proyecto.py',134),
-  ('F -> <empty>','F',0,'p_formato','proyecto.py',135),
-  ('K -> E NUM','K',2,'p_anadir_dias','proyecto.py',142),
-  ('K -> <empty>','K',0,'p_anadir_dias','proyecto.py',143),
-  ('C -> SEPARADOR','C',1,'p_separador','proyecto.py',150),
-  ('M -> MES','M',1,'p_mes','proyecto.py',156),
-  ('A -> ANNO','A',1,'p_anno','proyecto.py',162),
-  ('H -> DIGITO DIGITO HORA DIGITO DIGITO','H',5,'p_hora','proyecto.py',168),
-  ('T -> TIMEZONE','T',1,'p_timezone','proyecto.py',184),
+  ('S -> P X X F K','S',5,'p_fecha_conversion','proyecto.py',79),
+  ('S -> P X X K F','S',5,'p_fecha_conversion','proyecto.py',80),
+  ('S -> P X X F','S',4,'p_fecha_conversion','proyecto.py',81),
+  ('S -> P X X K','S',4,'p_fecha_conversion','proyecto.py',82),
+  ('S -> P X E P X','S',5,'p_fecha_conversion','proyecto.py',83),
+  ('P -> M C D C A E H','P',7,'p_fecha_hora','proyecto.py',122),
+  ('P -> M E D E A E H','P',7,'p_fecha_hora','proyecto.py',123),
+  ('P -> D C D C A E H','P',7,'p_fecha_hora','proyecto.py',124),
+  ('P -> D E D E A E H','P',7,'p_fecha_hora','proyecto.py',125),
+  ('P -> D E M E A E H','P',7,'p_fecha_hora','proyecto.py',126),
+  ('P -> D C M C A E H','P',7,'p_fecha_hora','proyecto.py',127),
+  ('X -> E T','X',2,'p_espacio_timezone','proyecto.py',164),
+  ('D -> DIGITO DIGITO','D',2,'p_doble_digito','proyecto.py',169),
+  ('E -> ESPACIO','E',1,'p_espacio','proyecto.py',175),
+  ('F -> E FORMATO','F',2,'p_formato','proyecto.py',181),
+  ('K -> E NUM','K',2,'p_anadir_dias','proyecto.py',188),
+  ('C -> SEPARADOR','C',1,'p_separador','proyecto.py',196),
+  ('M -> MES','M',1,'p_mes','proyecto.py',202),
+  ('A -> ANNO','A',1,'p_anno','proyecto.py',208),
+  ('H -> DIGITO DIGITO HORA DIGITO DIGITO','H',5,'p_hora','proyecto.py',214),
+  ('T -> TIMEZONE','T',1,'p_timezone','proyecto.py',232),
 ]
