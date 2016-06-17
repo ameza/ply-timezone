@@ -2,6 +2,7 @@ import ply.lex as lex
 import datetime
 import ply.yacc as yacc
 import simpledate
+from dateutil.relativedelta import relativedelta
 
 
 # coding=utf-8
@@ -83,7 +84,14 @@ def p_fecha_conversion(p):
          | P X X K
          | P X E P X"""
     if p[3] == " ":
-        print('diferencia')
+        print('\nCalculando tiempo transcurrido entre fechas ingresadas')
+
+        nuevoP2 = simpledate.best_guess_utc('{} {}'.format(p[1], p[2]), debug=False)
+
+        nuevoP5 = simpledate.best_guess_utc('{} {}'.format(p[4], p[5]), debug=False)
+
+        delta = relativedelta(nuevoP5, nuevoP2)
+        print("\nTotal: \n{} Años \n{}  Meses \n{} Días\n{} Horas \n{} Minutos".format(delta.years, delta.months, delta.days, delta.hours, delta.minutes))
     else:
         print("\nConvirtiendo de {} a {}".format(p[2], p[3]), end='')
         formatoSalida = '%B/%d/%Y %H:%M'
@@ -110,7 +118,6 @@ def p_fecha_conversion(p):
                         formatoSalida = '%m/%d/%Y %H:%M'
                     else:
                         formatoSalida = '%d/%m/%Y %H:%M'
-
 
         fechaFinal = p[1] + datetime.timedelta(days=int(anadirTotal))
         if p[3] != 'UTC':
