@@ -5,7 +5,6 @@ import ply.yacc as yacc
 import simpledate
 from dateutil.relativedelta import relativedelta
 
-
 # coding=utf-8
 # lexer
 tokens = ('ANNO', 'DIGITO', 'MES', 'HORA', 'SEPARADOR', 'TIMEZONE', 'ESPACIO', 'FORMATO', 'NUM')
@@ -70,8 +69,6 @@ def t_newline(t):
     t.lexer.lineno += t.value.count("\n")
 
 
-
-
 lex.lex()
 
 
@@ -94,7 +91,9 @@ def p_fecha_conversion(p):
         nuevoP5 = simpledate.best_guess_utc('{} {}'.format(p[4], p[5]), debug=False)
 
         delta = relativedelta(nuevoP5, nuevoP2)
-        print("\nTotal: \n{} Años \n{}  Meses \n{} Días\n{} Horas \n{} Minutos".format(delta.years, delta.months, delta.days, delta.hours, delta.minutes))
+        print("\nTotal: \n{} Años \n{}  Meses \n{} Días\n{} Horas \n{} Minutos".format(delta.years, delta.months,
+                                                                                       delta.days, delta.hours,
+                                                                                       delta.minutes))
     else:
         print("\nConvirtiendo de {} a {}".format(p[2], p[3]), end='')
         formatoSalida = '%B/%d/%Y %H:%M'
@@ -124,13 +123,11 @@ def p_fecha_conversion(p):
                         formatoSalida = '%d/%m/%Y %H:%M'
 
         fechaFinal = p[1] + datetime.timedelta(days=int(anadirTotal))
-        if p[3] != 'UTC':
-            dateConversion = simpledate.SimpleDate('{} {}'.format(fechaFinal, p[2]), country='US', unsafe=True)\
-                        .convert(tz='{}'.format(p[3]), country='US', unsafe=True)
-            print('\nResultado:', dateConversion.datetime.strftime(formatoSalida), p[3])
-        else:
-            dateConversion = simpledate.best_guess_utc('{} {}'.format(fechaFinal, p[2]), debug=False)
-            print('\nResultado:', dateConversion.strftime(formatoSalida), p[3])
+
+        dateConversion = simpledate.SimpleDate('{} {}'.format(fechaFinal, p[2]), unsafe=True, debug=False) \
+            .convert(tz='{}'.format(p[3]), unsafe=True)
+        print('\nResultado:', dateConversion.datetime.strftime(formatoSalida), p[3])
+
         print('\nDST No se encuentra activo en esta conversión')
 
 
@@ -142,12 +139,12 @@ def p_fecha_hora(p):
          | D E M E A E H
          | D C M C A E H"""
     try:
-        #revisamos los no terminales para idenficar el formato de tiempo recibido
+        # revisamos los no terminales para idenficar el formato de tiempo recibido
         if p[1].isalpha():
             if len(p[1]) > 3:
-                formato = "%B"+p[2]+"%d"+p[4]+"%Y %H:%M"
+                formato = "%B" + p[2] + "%d" + p[4] + "%Y %H:%M"
             else:
-                formato = "%b"+p[2]+"%d"+p[4]+"%Y %H:%M"
+                formato = "%b" + p[2] + "%d" + p[4] + "%Y %H:%M"
         elif p[3].isalpha():
             if len(p[3]) > 3:
                 formato = "%d" + p[2] + "%B" + p[4] + "%Y %H:%M"
@@ -165,7 +162,7 @@ def p_fecha_hora(p):
             hora = "00:00"
         else:
             hora = p[7]
-        mifecha = p[1]+p[2]+p[3]+p[4]+p[5]+p[6]+hora
+        mifecha = p[1] + p[2] + p[3] + p[4] + p[5] + p[6] + hora
         fecha = datetime.datetime.strptime(mifecha, formato)
         print("\nFormato reconocido: {}\nFecha Reconocida: {}".format(formato, fecha), end='')
         p[0] = fecha
@@ -183,7 +180,7 @@ def p_espacio_timezone(p):
 
 def p_doble_digito(p):
     """D : DIGITO DIGITO"""
-    p[0]=p[1]+p[2]
+    p[0] = p[1] + p[2]
     # print(p[0], end="")
 
 
@@ -197,33 +194,32 @@ def p_formato(p):
     """F : E FORMATO"""
 
     if len(p) > 1:
-        p[0] = p[1]+p[2]
+        p[0] = p[1] + p[2]
 
 
 def p_anadir_dias(p):
     """K : E NUM"""
 
     if len(p) > 1:
-            p[0] = p[2][4:]
-
+        p[0] = p[2][4:]
 
 
 def p_separador(p):
     """C : SEPARADOR"""
     p[0] = p[1]
-    #print(p[1], end="")
+    # print(p[1], end="")
 
 
 def p_mes(p):
     """M : MES"""
     p[0] = p[1]
-    #print(p[0], end="")
+    # print(p[0], end="")
 
 
 def p_anno(p):
     """A : ANNO"""
     p[0] = p[1]
-    #print(p[1], end="")
+    # print(p[1], end="")
 
 
 def p_hora(p):
@@ -232,14 +228,14 @@ def p_hora(p):
     if -1 < hora < 24:
         minuto = int(p[4] + p[5])
         if -1 < minuto < 60:
-            p[0] = p[1]+p[2]+p[3]+p[4]+p[5]
-            #print(p[0], end="")
+            p[0] = p[1] + p[2] + p[3] + p[4] + p[5]
+            # print(p[0], end="")
         else:
-            #raise ValueError("Los minutos deben estar entre 00 y 59")
+            # raise ValueError("Los minutos deben estar entre 00 y 59")
             print("Los minutos deben estar entre 00 y 59")
             p.lexer.skip(1)
     else:
-        #raise ValueError("La hora debe estar entre 00 y 23")
+        # raise ValueError("La hora debe estar entre 00 y 23")
         print("La hora debe estar entre 00 y 23")
         p.lexer.skip(1)
 
