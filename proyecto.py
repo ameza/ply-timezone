@@ -42,7 +42,7 @@ def t_SEPARADOR(t):
 
 
 def t_TIMEZONE(t):
-    r"""(A|E|C|M|P|AK|H)ST|UTC"""
+    r"""(E|C|M|P|H)ST|UTC"""
     return t
 
 
@@ -84,6 +84,8 @@ def p_fecha_conversion(p):
          | P X X F
          | P X X K
          | P X E P X"""
+
+    # si el tercer no terminal esta vacío significa que se están comparando fechas
     if p[3] == " ":
         print('\nCalculando tiempo transcurrido entre fechas ingresadas')
 
@@ -97,6 +99,7 @@ def p_fecha_conversion(p):
         print("\nConvirtiendo de {} a {}".format(p[2], p[3]), end='')
         formatoSalida = '%B/%d/%Y %H:%M'
         anadirTotal = 0
+        # en este punto verificamos si es requerido añadir días o proveer un formato de salida
         if len(p) > 4:
             if p[4] is not None:
                 if p[4].isdigit():
@@ -122,7 +125,8 @@ def p_fecha_conversion(p):
 
         fechaFinal = p[1] + datetime.timedelta(days=int(anadirTotal))
         if p[3] != 'UTC':
-            dateConversion = simpledate.SimpleDate('{} {}'.format(fechaFinal, p[2])).convert(tz='{}'.format(p[3]), country='US', unsafe=True)
+            dateConversion = simpledate.SimpleDate('{} {}'.format(fechaFinal, p[2]), country='US', unsafe=True)\
+                        .convert(tz='{}'.format(p[3]), country='US', unsafe=True)
             print('\nResultado:', dateConversion.datetime.strftime(formatoSalida), p[3])
         else:
             dateConversion = simpledate.best_guess_utc('{} {}'.format(fechaFinal, p[2]), debug=False)
@@ -138,7 +142,7 @@ def p_fecha_hora(p):
          | D E M E A E H
          | D C M C A E H"""
     try:
-
+        #revisamos los no terminales para idenficar el formato de tiempo recibido
         if p[1].isalpha():
             if len(p[1]) > 3:
                 formato = "%B"+p[2]+"%d"+p[4]+"%Y %H:%M"
