@@ -1,27 +1,27 @@
-# ply-timezone
+# ply-timezone #
 timezone converter ply
 
 Python 3.4.3
 
-*Workspace para probar código
+###Workspace para probar código###
 
 https://ide.c9.io/ameza1/andres-ply-timezone
 
-*Bibliotecas utilizadas
+###Bibliotecas utilizadas###
 
--ply
+*ply*
 
-pip3 install ply
+```pip3 install ply```
 
--simple-dates
+*simple-dates*
 
-pip3 install simple-dates
+```pip3 install simple-dates```
 
-*Casos de prueba:
+###Casos de prueba:###
 
-19/Nov/1989 13:22 UTC PST ADD 400 mm/dd/yyyy
+``` 19/Nov/1989 13:22 UTC PST ADD 400 mm/dd/yyyy ```
 
-16-12-1991 19:00 UTC 09/19/2016 18:30 PST
+``` 16-12-1991 19:00 UTC 09/19/2016 18:30 PST ```
 
 December 16 1991 19:00 PST UTC
 
