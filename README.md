@@ -1,8 +1,8 @@
 # ply-timezone #
 timezone converter ply para curso automátas y compiladores
 
-o	El lenguaje consistirá en una fecha y hora en varios formatos (serán utilizados los nombres de meses en inglés o sus abreviaciones), una zona horaria de origen y una zona horaria de destino, opcionalmente se puede especificar el formato de salida o añadir días.
-o	También se podrán obtener diferencias entre fechas completas con diferentes zonas horaria.
+-El lenguaje consistirá en una fecha y hora en varios formatos (serán utilizados los nombres de meses en inglés o sus abreviaciones), una zona horaria de origen y una zona horaria de destino, opcionalmente se puede especificar el formato de salida o añadir días.
+-También se podrán obtener diferencias entre fechas completas con diferentes zonas horaria.
 
 Python 3.4.3
 
