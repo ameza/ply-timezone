@@ -1,57 +1,58 @@
-Created by PLY version 3.8 (http://www.dabeaz.com/ply)
+Created by PLY version 3.4 (http://www.dabeaz.com/ply)
 
 Grammar
 
 Rule 0     S' -> S
 Rule 1     S -> P X X F K
 Rule 2     S -> P X X K F
-Rule 3     S -> P X X F
-Rule 4     S -> P X X K
-Rule 5     S -> P X E P X
-Rule 6     P -> M C D C A E H
-Rule 7     P -> M E D E A E H
-Rule 8     P -> D C D C A E H
-Rule 9     P -> D E D E A E H
-Rule 10    P -> D E M E A E H
-Rule 11    P -> D C M C A E H
-Rule 12    X -> E T
-Rule 13    D -> DIGITO DIGITO
-Rule 14    E -> ESPACIO
-Rule 15    F -> E FORMATO
-Rule 16    K -> E NUM
-Rule 17    C -> SEPARADOR
-Rule 18    M -> MES
-Rule 19    A -> ANNO
-Rule 20    H -> DIGITO DIGITO HORA DIGITO DIGITO
-Rule 21    T -> TIMEZONE
+Rule 3     S -> P X X
+Rule 4     S -> P X X F
+Rule 5     S -> P X X K
+Rule 6     S -> P X E P X
+Rule 7     P -> M C D C A E H
+Rule 8     P -> M E D E A E H
+Rule 9     P -> D C D C A E H
+Rule 10    P -> D E D E A E H
+Rule 11    P -> D E M E A E H
+Rule 12    P -> D C M C A E H
+Rule 13    X -> E T
+Rule 14    D -> DIGITO DIGITO
+Rule 15    E -> ESPACIO
+Rule 16    F -> E FORMATO
+Rule 17    K -> E NUM
+Rule 18    C -> SEPARADOR
+Rule 19    M -> MES
+Rule 20    A -> ANNO
+Rule 21    H -> DIGITO DIGITO HORA DIGITO DIGITO
+Rule 22    T -> TIMEZONE
 
 Terminals, with rules where they appear
 
-ANNO                 : 19
-DIGITO               : 13 13 20 20 20 20
-ESPACIO              : 14
-FORMATO              : 15
-HORA                 : 20
-MES                  : 18
-NUM                  : 16
-SEPARADOR            : 17
-TIMEZONE             : 21
+ANNO                 : 20
+DIGITO               : 14 14 21 21 21 21
+ESPACIO              : 15
+FORMATO              : 16
+HORA                 : 21
+MES                  : 19
+NUM                  : 17
+SEPARADOR            : 18
+TIMEZONE             : 22
 error                : 
 
 Nonterminals, with rules where they appear
 
-A                    : 6 7 8 9 10 11
-C                    : 6 6 8 8 11 11
-D                    : 6 7 8 8 9 9 10 11
-E                    : 5 6 7 7 7 8 9 9 9 10 10 10 11 12 15 16
-F                    : 1 2 3
-H                    : 6 7 8 9 10 11
-K                    : 1 2 4
-M                    : 6 7 10 11
-P                    : 1 2 3 4 5 5
+A                    : 7 8 9 10 11 12
+C                    : 7 7 9 9 12 12
+D                    : 7 8 9 9 10 10 11 12
+E                    : 6 7 8 8 8 9 10 10 10 11 11 11 12 13 16 17
+F                    : 1 2 4
+H                    : 7 8 9 10 11 12
+K                    : 1 2 5
+M                    : 7 8 11 12
+P                    : 1 2 3 4 5 6 6
 S                    : 0
-T                    : 12
-X                    : 1 1 2 2 3 3 4 4 5 5
+T                    : 13
+X                    : 1 1 2 2 3 3 4 4 5 5 6 6
 
 Parsing method: LALR
 
@@ -60,246 +61,230 @@ state 0
     (0) S' -> . S
     (1) S -> . P X X F K
     (2) S -> . P X X K F
-    (3) S -> . P X X F
-    (4) S -> . P X X K
-    (5) S -> . P X E P X
-    (6) P -> . M C D C A E H
-    (7) P -> . M E D E A E H
-    (8) P -> . D C D C A E H
-    (9) P -> . D E D E A E H
-    (10) P -> . D E M E A E H
-    (11) P -> . D C M C A E H
-    (18) M -> . MES
-    (13) D -> . DIGITO DIGITO
+    (3) S -> . P X X
+    (4) S -> . P X X F
+    (5) S -> . P X X K
+    (6) S -> . P X E P X
+    (7) P -> . M C D C A E H
+    (8) P -> . M E D E A E H
+    (9) P -> . D C D C A E H
+    (10) P -> . D E D E A E H
+    (11) P -> . D E M E A E H
+    (12) P -> . D C M C A E H
+    (19) M -> . MES
+    (14) D -> . DIGITO DIGITO
 
-    MES             shift and go to state 1
-    DIGITO          shift and go to state 2
+    MES             shift and go to state 5
+    DIGITO          shift and go to state 3
 
-    M                              shift and go to state 6
-    D                              shift and go to state 5
-    S                              shift and go to state 3
-    P                              shift and go to state 4
+    M                              shift and go to state 2
+    S                              shift and go to state 1
+    P                              shift and go to state 6
+    D                              shift and go to state 4
 
 state 1
-
-    (18) M -> MES .
-
-    SEPARADOR       reduce using rule 18 (M -> MES .)
-    ESPACIO         reduce using rule 18 (M -> MES .)
-
-
-state 2
-
-    (13) D -> DIGITO . DIGITO
-
-    DIGITO          shift and go to state 7
-
-
-state 3
 
     (0) S' -> S .
 
 
 
-state 4
+state 2
 
-    (1) S -> P . X X F K
-    (2) S -> P . X X K F
-    (3) S -> P . X X F
-    (4) S -> P . X X K
-    (5) S -> P . X E P X
-    (12) X -> . E T
-    (14) E -> . ESPACIO
+    (7) P -> M . C D C A E H
+    (8) P -> M . E D E A E H
+    (18) C -> . SEPARADOR
+    (15) E -> . ESPACIO
 
+    SEPARADOR       shift and go to state 7
     ESPACIO         shift and go to state 9
 
-    X                              shift and go to state 8
+    C                              shift and go to state 8
     E                              shift and go to state 10
+
+state 3
+
+    (14) D -> DIGITO . DIGITO
+
+    DIGITO          shift and go to state 11
+
+
+state 4
+
+    (9) P -> D . C D C A E H
+    (10) P -> D . E D E A E H
+    (11) P -> D . E M E A E H
+    (12) P -> D . C M C A E H
+    (18) C -> . SEPARADOR
+    (15) E -> . ESPACIO
+
+    SEPARADOR       shift and go to state 7
+    ESPACIO         shift and go to state 9
+
+    C                              shift and go to state 12
+    E                              shift and go to state 13
 
 state 5
 
-    (8) P -> D . C D C A E H
-    (9) P -> D . E D E A E H
-    (10) P -> D . E M E A E H
-    (11) P -> D . C M C A E H
-    (17) C -> . SEPARADOR
-    (14) E -> . ESPACIO
+    (19) M -> MES .
 
-    SEPARADOR       shift and go to state 11
-    ESPACIO         shift and go to state 9
+    SEPARADOR       reduce using rule 19 (M -> MES .)
+    ESPACIO         reduce using rule 19 (M -> MES .)
 
-    E                              shift and go to state 12
-    C                              shift and go to state 13
 
 state 6
 
-    (6) P -> M . C D C A E H
-    (7) P -> M . E D E A E H
-    (17) C -> . SEPARADOR
-    (14) E -> . ESPACIO
+    (1) S -> P . X X F K
+    (2) S -> P . X X K F
+    (3) S -> P . X X
+    (4) S -> P . X X F
+    (5) S -> P . X X K
+    (6) S -> P . X E P X
+    (13) X -> . E T
+    (15) E -> . ESPACIO
 
-    SEPARADOR       shift and go to state 11
     ESPACIO         shift and go to state 9
 
     E                              shift and go to state 14
-    C                              shift and go to state 15
+    X                              shift and go to state 15
 
 state 7
 
-    (13) D -> DIGITO DIGITO .
+    (18) C -> SEPARADOR .
 
-    ESPACIO         reduce using rule 13 (D -> DIGITO DIGITO .)
-    SEPARADOR       reduce using rule 13 (D -> DIGITO DIGITO .)
+    DIGITO          reduce using rule 18 (C -> SEPARADOR .)
+    ANNO            reduce using rule 18 (C -> SEPARADOR .)
+    MES             reduce using rule 18 (C -> SEPARADOR .)
 
 
 state 8
 
-    (1) S -> P X . X F K
-    (2) S -> P X . X K F
-    (3) S -> P X . X F
-    (4) S -> P X . X K
-    (5) S -> P X . E P X
-    (12) X -> . E T
-    (14) E -> . ESPACIO
+    (7) P -> M C . D C A E H
+    (14) D -> . DIGITO DIGITO
 
-    ESPACIO         shift and go to state 9
+    DIGITO          shift and go to state 3
 
-    X                              shift and go to state 16
-    E                              shift and go to state 17
+    D                              shift and go to state 16
 
 state 9
 
-    (14) E -> ESPACIO .
+    (15) E -> ESPACIO .
 
-    TIMEZONE        reduce using rule 14 (E -> ESPACIO .)
-    DIGITO          reduce using rule 14 (E -> ESPACIO .)
-    ANNO            reduce using rule 14 (E -> ESPACIO .)
-    FORMATO         reduce using rule 14 (E -> ESPACIO .)
-    MES             reduce using rule 14 (E -> ESPACIO .)
-    NUM             reduce using rule 14 (E -> ESPACIO .)
+    TIMEZONE        reduce using rule 15 (E -> ESPACIO .)
+    MES             reduce using rule 15 (E -> ESPACIO .)
+    DIGITO          reduce using rule 15 (E -> ESPACIO .)
+    ANNO            reduce using rule 15 (E -> ESPACIO .)
+    FORMATO         reduce using rule 15 (E -> ESPACIO .)
+    NUM             reduce using rule 15 (E -> ESPACIO .)
 
 
 state 10
 
-    (12) X -> E . T
-    (21) T -> . TIMEZONE
+    (8) P -> M E . D E A E H
+    (14) D -> . DIGITO DIGITO
 
-    TIMEZONE        shift and go to state 19
+    DIGITO          shift and go to state 3
 
-    T                              shift and go to state 18
+    D                              shift and go to state 17
 
 state 11
 
-    (17) C -> SEPARADOR .
+    (14) D -> DIGITO DIGITO .
 
-    DIGITO          reduce using rule 17 (C -> SEPARADOR .)
-    MES             reduce using rule 17 (C -> SEPARADOR .)
-    ANNO            reduce using rule 17 (C -> SEPARADOR .)
+    SEPARADOR       reduce using rule 14 (D -> DIGITO DIGITO .)
+    ESPACIO         reduce using rule 14 (D -> DIGITO DIGITO .)
 
 
 state 12
 
-    (9) P -> D E . D E A E H
-    (10) P -> D E . M E A E H
-    (13) D -> . DIGITO DIGITO
-    (18) M -> . MES
+    (9) P -> D C . D C A E H
+    (12) P -> D C . M C A E H
+    (14) D -> . DIGITO DIGITO
+    (19) M -> . MES
 
-    DIGITO          shift and go to state 2
-    MES             shift and go to state 1
+    DIGITO          shift and go to state 3
+    MES             shift and go to state 5
+
+    D                              shift and go to state 18
+    M                              shift and go to state 19
+
+state 13
+
+    (10) P -> D E . D E A E H
+    (11) P -> D E . M E A E H
+    (14) D -> . DIGITO DIGITO
+    (19) M -> . MES
+
+    DIGITO          shift and go to state 3
+    MES             shift and go to state 5
 
     M                              shift and go to state 21
     D                              shift and go to state 20
 
-state 13
-
-    (8) P -> D C . D C A E H
-    (11) P -> D C . M C A E H
-    (13) D -> . DIGITO DIGITO
-    (18) M -> . MES
-
-    DIGITO          shift and go to state 2
-    MES             shift and go to state 1
-
-    M                              shift and go to state 22
-    D                              shift and go to state 23
-
 state 14
 
-    (7) P -> M E . D E A E H
-    (13) D -> . DIGITO DIGITO
+    (13) X -> E . T
+    (22) T -> . TIMEZONE
 
-    DIGITO          shift and go to state 2
+    TIMEZONE        shift and go to state 23
 
-    D                              shift and go to state 24
+    T                              shift and go to state 22
 
 state 15
 
-    (6) P -> M C . D C A E H
-    (13) D -> . DIGITO DIGITO
-
-    DIGITO          shift and go to state 2
-
-    D                              shift and go to state 25
-
-state 16
-
-    (1) S -> P X X . F K
-    (2) S -> P X X . K F
-    (3) S -> P X X . F
-    (4) S -> P X X . K
-    (15) F -> . E FORMATO
-    (16) K -> . E NUM
-    (14) E -> . ESPACIO
+    (1) S -> P X . X F K
+    (2) S -> P X . X K F
+    (3) S -> P X . X
+    (4) S -> P X . X F
+    (5) S -> P X . X K
+    (6) S -> P X . E P X
+    (13) X -> . E T
+    (15) E -> . ESPACIO
 
     ESPACIO         shift and go to state 9
 
-    F                              shift and go to state 26
-    E                              shift and go to state 28
-    K                              shift and go to state 27
+    E                              shift and go to state 24
+    X                              shift and go to state 25
+
+state 16
+
+    (7) P -> M C D . C A E H
+    (18) C -> . SEPARADOR
+
+    SEPARADOR       shift and go to state 7
+
+    C                              shift and go to state 26
 
 state 17
 
-    (5) S -> P X E . P X
-    (12) X -> E . T
-    (6) P -> . M C D C A E H
-    (7) P -> . M E D E A E H
-    (8) P -> . D C D C A E H
-    (9) P -> . D E D E A E H
-    (10) P -> . D E M E A E H
-    (11) P -> . D C M C A E H
-    (21) T -> . TIMEZONE
-    (18) M -> . MES
-    (13) D -> . DIGITO DIGITO
+    (8) P -> M E D . E A E H
+    (15) E -> . ESPACIO
 
-    TIMEZONE        shift and go to state 19
-    MES             shift and go to state 1
-    DIGITO          shift and go to state 2
+    ESPACIO         shift and go to state 9
 
-    T                              shift and go to state 18
-    D                              shift and go to state 5
-    M                              shift and go to state 6
-    P                              shift and go to state 29
+    E                              shift and go to state 27
 
 state 18
 
-    (12) X -> E T .
+    (9) P -> D C D . C A E H
+    (18) C -> . SEPARADOR
 
-    $end            reduce using rule 12 (X -> E T .)
-    ESPACIO         reduce using rule 12 (X -> E T .)
+    SEPARADOR       shift and go to state 7
 
+    C                              shift and go to state 28
 
 state 19
 
-    (21) T -> TIMEZONE .
+    (12) P -> D C M . C A E H
+    (18) C -> . SEPARADOR
 
-    ESPACIO         reduce using rule 21 (T -> TIMEZONE .)
-    $end            reduce using rule 21 (T -> TIMEZONE .)
+    SEPARADOR       shift and go to state 7
 
+    C                              shift and go to state 29
 
 state 20
 
-    (9) P -> D E D . E A E H
-    (14) E -> . ESPACIO
+    (10) P -> D E D . E A E H
+    (15) E -> . ESPACIO
 
     ESPACIO         shift and go to state 9
 
@@ -307,8 +292,8 @@ state 20
 
 state 21
 
-    (10) P -> D E M . E A E H
-    (14) E -> . ESPACIO
+    (11) P -> D E M . E A E H
+    (15) E -> . ESPACIO
 
     ESPACIO         shift and go to state 9
 
@@ -316,379 +301,400 @@ state 21
 
 state 22
 
-    (11) P -> D C M . C A E H
-    (17) C -> . SEPARADOR
+    (13) X -> E T .
 
-    SEPARADOR       shift and go to state 11
+    $end            reduce using rule 13 (X -> E T .)
+    ESPACIO         reduce using rule 13 (X -> E T .)
 
-    C                              shift and go to state 32
 
 state 23
 
-    (8) P -> D C D . C A E H
-    (17) C -> . SEPARADOR
+    (22) T -> TIMEZONE .
 
-    SEPARADOR       shift and go to state 11
+    ESPACIO         reduce using rule 22 (T -> TIMEZONE .)
+    $end            reduce using rule 22 (T -> TIMEZONE .)
 
-    C                              shift and go to state 33
 
 state 24
 
-    (7) P -> M E D . E A E H
-    (14) E -> . ESPACIO
+    (6) S -> P X E . P X
+    (13) X -> E . T
+    (7) P -> . M C D C A E H
+    (8) P -> . M E D E A E H
+    (9) P -> . D C D C A E H
+    (10) P -> . D E D E A E H
+    (11) P -> . D E M E A E H
+    (12) P -> . D C M C A E H
+    (22) T -> . TIMEZONE
+    (19) M -> . MES
+    (14) D -> . DIGITO DIGITO
 
-    ESPACIO         shift and go to state 9
+    TIMEZONE        shift and go to state 23
+    MES             shift and go to state 5
+    DIGITO          shift and go to state 3
 
-    E                              shift and go to state 34
+    T                              shift and go to state 22
+    M                              shift and go to state 2
+    P                              shift and go to state 32
+    D                              shift and go to state 4
 
 state 25
 
-    (6) P -> M C D . C A E H
-    (17) C -> . SEPARADOR
+    (1) S -> P X X . F K
+    (2) S -> P X X . K F
+    (3) S -> P X X .
+    (4) S -> P X X . F
+    (5) S -> P X X . K
+    (16) F -> . E FORMATO
+    (17) K -> . E NUM
+    (15) E -> . ESPACIO
 
-    SEPARADOR       shift and go to state 11
+    $end            reduce using rule 3 (S -> P X X .)
+    ESPACIO         shift and go to state 9
 
-    C                              shift and go to state 35
+    K                              shift and go to state 33
+    F                              shift and go to state 35
+    E                              shift and go to state 34
 
 state 26
 
-    (1) S -> P X X F . K
-    (3) S -> P X X F .
-    (16) K -> . E NUM
-    (14) E -> . ESPACIO
+    (7) P -> M C D C . A E H
+    (20) A -> . ANNO
 
-    $end            reduce using rule 3 (S -> P X X F .)
-    ESPACIO         shift and go to state 9
+    ANNO            shift and go to state 36
 
-    E                              shift and go to state 37
-    K                              shift and go to state 36
+    A                              shift and go to state 37
 
 state 27
 
-    (2) S -> P X X K . F
-    (4) S -> P X X K .
-    (15) F -> . E FORMATO
-    (14) E -> . ESPACIO
+    (8) P -> M E D E . A E H
+    (20) A -> . ANNO
 
-    $end            reduce using rule 4 (S -> P X X K .)
-    ESPACIO         shift and go to state 9
+    ANNO            shift and go to state 36
 
-    F                              shift and go to state 38
-    E                              shift and go to state 39
+    A                              shift and go to state 38
 
 state 28
 
-    (15) F -> E . FORMATO
-    (16) K -> E . NUM
+    (9) P -> D C D C . A E H
+    (20) A -> . ANNO
 
-    FORMATO         shift and go to state 41
-    NUM             shift and go to state 40
+    ANNO            shift and go to state 36
 
+    A                              shift and go to state 39
 
 state 29
 
-    (5) S -> P X E P . X
-    (12) X -> . E T
-    (14) E -> . ESPACIO
+    (12) P -> D C M C . A E H
+    (20) A -> . ANNO
 
-    ESPACIO         shift and go to state 9
+    ANNO            shift and go to state 36
 
-    X                              shift and go to state 42
-    E                              shift and go to state 10
+    A                              shift and go to state 40
 
 state 30
 
-    (9) P -> D E D E . A E H
-    (19) A -> . ANNO
+    (10) P -> D E D E . A E H
+    (20) A -> . ANNO
 
-    ANNO            shift and go to state 43
+    ANNO            shift and go to state 36
 
-    A                              shift and go to state 44
+    A                              shift and go to state 41
 
 state 31
 
-    (10) P -> D E M E . A E H
-    (19) A -> . ANNO
+    (11) P -> D E M E . A E H
+    (20) A -> . ANNO
 
-    ANNO            shift and go to state 43
+    ANNO            shift and go to state 36
 
-    A                              shift and go to state 45
+    A                              shift and go to state 42
 
 state 32
 
-    (11) P -> D C M C . A E H
-    (19) A -> . ANNO
+    (6) S -> P X E P . X
+    (13) X -> . E T
+    (15) E -> . ESPACIO
 
-    ANNO            shift and go to state 43
+    ESPACIO         shift and go to state 9
 
-    A                              shift and go to state 46
+    E                              shift and go to state 14
+    X                              shift and go to state 43
 
 state 33
 
-    (8) P -> D C D C . A E H
-    (19) A -> . ANNO
+    (2) S -> P X X K . F
+    (5) S -> P X X K .
+    (16) F -> . E FORMATO
+    (15) E -> . ESPACIO
 
-    ANNO            shift and go to state 43
+    $end            reduce using rule 5 (S -> P X X K .)
+    ESPACIO         shift and go to state 9
 
-    A                              shift and go to state 47
+    F                              shift and go to state 45
+    E                              shift and go to state 44
 
 state 34
 
-    (7) P -> M E D E . A E H
-    (19) A -> . ANNO
+    (16) F -> E . FORMATO
+    (17) K -> E . NUM
 
-    ANNO            shift and go to state 43
+    FORMATO         shift and go to state 46
+    NUM             shift and go to state 47
 
-    A                              shift and go to state 48
 
 state 35
 
-    (6) P -> M C D C . A E H
-    (19) A -> . ANNO
+    (1) S -> P X X F . K
+    (4) S -> P X X F .
+    (17) K -> . E NUM
+    (15) E -> . ESPACIO
 
-    ANNO            shift and go to state 43
+    $end            reduce using rule 4 (S -> P X X F .)
+    ESPACIO         shift and go to state 9
 
-    A                              shift and go to state 49
+    K                              shift and go to state 48
+    E                              shift and go to state 49
 
 state 36
 
-    (1) S -> P X X F K .
+    (20) A -> ANNO .
 
-    $end            reduce using rule 1 (S -> P X X F K .)
+    ESPACIO         reduce using rule 20 (A -> ANNO .)
 
 
 state 37
 
-    (16) K -> E . NUM
+    (7) P -> M C D C A . E H
+    (15) E -> . ESPACIO
 
-    NUM             shift and go to state 40
+    ESPACIO         shift and go to state 9
 
+    E                              shift and go to state 50
 
 state 38
+
+    (8) P -> M E D E A . E H
+    (15) E -> . ESPACIO
+
+    ESPACIO         shift and go to state 9
+
+    E                              shift and go to state 51
+
+state 39
+
+    (9) P -> D C D C A . E H
+    (15) E -> . ESPACIO
+
+    ESPACIO         shift and go to state 9
+
+    E                              shift and go to state 52
+
+state 40
+
+    (12) P -> D C M C A . E H
+    (15) E -> . ESPACIO
+
+    ESPACIO         shift and go to state 9
+
+    E                              shift and go to state 53
+
+state 41
+
+    (10) P -> D E D E A . E H
+    (15) E -> . ESPACIO
+
+    ESPACIO         shift and go to state 9
+
+    E                              shift and go to state 54
+
+state 42
+
+    (11) P -> D E M E A . E H
+    (15) E -> . ESPACIO
+
+    ESPACIO         shift and go to state 9
+
+    E                              shift and go to state 55
+
+state 43
+
+    (6) S -> P X E P X .
+
+    $end            reduce using rule 6 (S -> P X E P X .)
+
+
+state 44
+
+    (16) F -> E . FORMATO
+
+    FORMATO         shift and go to state 46
+
+
+state 45
 
     (2) S -> P X X K F .
 
     $end            reduce using rule 2 (S -> P X X K F .)
 
 
-state 39
-
-    (15) F -> E . FORMATO
-
-    FORMATO         shift and go to state 41
-
-
-state 40
-
-    (16) K -> E NUM .
-
-    ESPACIO         reduce using rule 16 (K -> E NUM .)
-    $end            reduce using rule 16 (K -> E NUM .)
-
-
-state 41
-
-    (15) F -> E FORMATO .
-
-    $end            reduce using rule 15 (F -> E FORMATO .)
-    ESPACIO         reduce using rule 15 (F -> E FORMATO .)
-
-
-state 42
-
-    (5) S -> P X E P X .
-
-    $end            reduce using rule 5 (S -> P X E P X .)
-
-
-state 43
-
-    (19) A -> ANNO .
-
-    ESPACIO         reduce using rule 19 (A -> ANNO .)
-
-
-state 44
-
-    (9) P -> D E D E A . E H
-    (14) E -> . ESPACIO
-
-    ESPACIO         shift and go to state 9
-
-    E                              shift and go to state 50
-
-state 45
-
-    (10) P -> D E M E A . E H
-    (14) E -> . ESPACIO
-
-    ESPACIO         shift and go to state 9
-
-    E                              shift and go to state 51
-
 state 46
 
-    (11) P -> D C M C A . E H
-    (14) E -> . ESPACIO
+    (16) F -> E FORMATO .
 
-    ESPACIO         shift and go to state 9
+    $end            reduce using rule 16 (F -> E FORMATO .)
+    ESPACIO         reduce using rule 16 (F -> E FORMATO .)
 
-    E                              shift and go to state 52
 
 state 47
 
-    (8) P -> D C D C A . E H
-    (14) E -> . ESPACIO
+    (17) K -> E NUM .
 
-    ESPACIO         shift and go to state 9
+    $end            reduce using rule 17 (K -> E NUM .)
+    ESPACIO         reduce using rule 17 (K -> E NUM .)
 
-    E                              shift and go to state 53
 
 state 48
 
-    (7) P -> M E D E A . E H
-    (14) E -> . ESPACIO
+    (1) S -> P X X F K .
 
-    ESPACIO         shift and go to state 9
+    $end            reduce using rule 1 (S -> P X X F K .)
 
-    E                              shift and go to state 54
 
 state 49
 
-    (6) P -> M C D C A . E H
-    (14) E -> . ESPACIO
+    (17) K -> E . NUM
 
-    ESPACIO         shift and go to state 9
+    NUM             shift and go to state 47
 
-    E                              shift and go to state 55
 
 state 50
 
-    (9) P -> D E D E A E . H
-    (20) H -> . DIGITO DIGITO HORA DIGITO DIGITO
+    (7) P -> M C D C A E . H
+    (21) H -> . DIGITO DIGITO HORA DIGITO DIGITO
 
-    DIGITO          shift and go to state 56
+    DIGITO          shift and go to state 57
 
-    H                              shift and go to state 57
+    H                              shift and go to state 56
 
 state 51
 
-    (10) P -> D E M E A E . H
-    (20) H -> . DIGITO DIGITO HORA DIGITO DIGITO
+    (8) P -> M E D E A E . H
+    (21) H -> . DIGITO DIGITO HORA DIGITO DIGITO
 
-    DIGITO          shift and go to state 56
+    DIGITO          shift and go to state 57
 
     H                              shift and go to state 58
 
 state 52
 
-    (11) P -> D C M C A E . H
-    (20) H -> . DIGITO DIGITO HORA DIGITO DIGITO
+    (9) P -> D C D C A E . H
+    (21) H -> . DIGITO DIGITO HORA DIGITO DIGITO
 
-    DIGITO          shift and go to state 56
+    DIGITO          shift and go to state 57
 
     H                              shift and go to state 59
 
 state 53
 
-    (8) P -> D C D C A E . H
-    (20) H -> . DIGITO DIGITO HORA DIGITO DIGITO
+    (12) P -> D C M C A E . H
+    (21) H -> . DIGITO DIGITO HORA DIGITO DIGITO
 
-    DIGITO          shift and go to state 56
+    DIGITO          shift and go to state 57
 
     H                              shift and go to state 60
 
 state 54
 
-    (7) P -> M E D E A E . H
-    (20) H -> . DIGITO DIGITO HORA DIGITO DIGITO
+    (10) P -> D E D E A E . H
+    (21) H -> . DIGITO DIGITO HORA DIGITO DIGITO
 
-    DIGITO          shift and go to state 56
+    DIGITO          shift and go to state 57
 
     H                              shift and go to state 61
 
 state 55
 
-    (6) P -> M C D C A E . H
-    (20) H -> . DIGITO DIGITO HORA DIGITO DIGITO
+    (11) P -> D E M E A E . H
+    (21) H -> . DIGITO DIGITO HORA DIGITO DIGITO
 
-    DIGITO          shift and go to state 56
+    DIGITO          shift and go to state 57
 
     H                              shift and go to state 62
 
 state 56
 
-    (20) H -> DIGITO . DIGITO HORA DIGITO DIGITO
+    (7) P -> M C D C A E H .
 
-    DIGITO          shift and go to state 63
+    ESPACIO         reduce using rule 7 (P -> M C D C A E H .)
 
 
 state 57
 
-    (9) P -> D E D E A E H .
+    (21) H -> DIGITO . DIGITO HORA DIGITO DIGITO
 
-    ESPACIO         reduce using rule 9 (P -> D E D E A E H .)
+    DIGITO          shift and go to state 63
 
 
 state 58
 
-    (10) P -> D E M E A E H .
+    (8) P -> M E D E A E H .
 
-    ESPACIO         reduce using rule 10 (P -> D E M E A E H .)
+    ESPACIO         reduce using rule 8 (P -> M E D E A E H .)
 
 
 state 59
 
-    (11) P -> D C M C A E H .
+    (9) P -> D C D C A E H .
 
-    ESPACIO         reduce using rule 11 (P -> D C M C A E H .)
+    ESPACIO         reduce using rule 9 (P -> D C D C A E H .)
 
 
 state 60
 
-    (8) P -> D C D C A E H .
+    (12) P -> D C M C A E H .
 
-    ESPACIO         reduce using rule 8 (P -> D C D C A E H .)
+    ESPACIO         reduce using rule 12 (P -> D C M C A E H .)
 
 
 state 61
 
-    (7) P -> M E D E A E H .
+    (10) P -> D E D E A E H .
 
-    ESPACIO         reduce using rule 7 (P -> M E D E A E H .)
+    ESPACIO         reduce using rule 10 (P -> D E D E A E H .)
 
 
 state 62
 
-    (6) P -> M C D C A E H .
+    (11) P -> D E M E A E H .
 
-    ESPACIO         reduce using rule 6 (P -> M C D C A E H .)
+    ESPACIO         reduce using rule 11 (P -> D E M E A E H .)
 
 
 state 63
 
-    (20) H -> DIGITO DIGITO . HORA DIGITO DIGITO
+    (21) H -> DIGITO DIGITO . HORA DIGITO DIGITO
 
     HORA            shift and go to state 64
 
 
 state 64
 
-    (20) H -> DIGITO DIGITO HORA . DIGITO DIGITO
+    (21) H -> DIGITO DIGITO HORA . DIGITO DIGITO
 
     DIGITO          shift and go to state 65
 
 
 state 65
 
-    (20) H -> DIGITO DIGITO HORA DIGITO . DIGITO
+    (21) H -> DIGITO DIGITO HORA DIGITO . DIGITO
 
     DIGITO          shift and go to state 66
 
 
 state 66
 
-    (20) H -> DIGITO DIGITO HORA DIGITO DIGITO .
+    (21) H -> DIGITO DIGITO HORA DIGITO DIGITO .
 
-    ESPACIO         reduce using rule 20 (H -> DIGITO DIGITO HORA DIGITO DIGITO .)
+    ESPACIO         reduce using rule 21 (H -> DIGITO DIGITO HORA DIGITO DIGITO .)
 

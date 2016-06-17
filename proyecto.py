@@ -78,6 +78,7 @@ lex.lex()
 def p_fecha_conversion(p):
     """S : P X X F K
          | P X X K F
+         | P X X
          | P X X F
          | P X X K
          | P X E P X"""
@@ -87,16 +88,17 @@ def p_fecha_conversion(p):
         print("\nConvirtiendo de {} a {}".format(p[2], p[3]), end='')
         formatoSalida = '%B/%d/%Y %H:%M'
         anadirTotal = 0
-        if p[4] is not None:
-            if p[4].isdigit():
-                print("\nSe añadirán {} días a resultado".format(p[4]), end='')
-                anadirTotal = p[4]
-            else:
-                print("\nFormato de salida: {}".format(p[4]), end='')
-                if p[4] == ' mm/dd/yyyy':
-                    formatoSalida = '%m/%d/%Y %H:%M'
+        if len(p) > 4:
+            if p[4] is not None:
+                if p[4].isdigit():
+                    print("\nSe añadirán {} días a resultado".format(p[4]), end='')
+                    anadirTotal = p[4]
                 else:
-                    formatoSalida = '%d/%m/%Y %H:%M'
+                    print("\nFormato de salida: {}".format(p[4]), end='')
+                    if p[4] == ' mm/dd/yyyy':
+                        formatoSalida = '%m/%d/%Y %H:%M'
+                    else:
+                        formatoSalida = '%d/%m/%Y %H:%M'
         if len(p) > 5:
             if p[5] is not None:
                 if p[5].isdigit():
