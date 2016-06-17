@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import ply.lex as lex
 import datetime
 import ply.yacc as yacc
