@@ -9,6 +9,8 @@ Python 3.4.3
 
 ###Workspace para probar código###
 
+Entorno virtual que permite ejecutar y ver el código en el navegador, es necesario crearse una cuenta para poder acceder, el workspace es público.
+
 https://ide.c9.io/ameza1/andres-ply-timezone
 
 ###Bibliotecas utilizadas###
