@@ -25,20 +25,24 @@ https://ide.c9.io/ameza1/andres-ply-timezone
 
 ###Casos de prueba:###
 
-```19/Nov/1989 13:22 UTC PST ADD 400 mm/dd/yyyy```
+Convertir una fecha completa a otra zona horaria
 
-```16-12-1991 19:00 UTC 09/19/2016 18:30 PST```
+December 16 1991 14:35 CST MST
 
-```December 16 1991 19:00 PST UTC```
+Convertir una fecha completa a otra zona horaria y especificar formato de salida 
 
-```16/12/1991 12:00 UTC PST```
+Dec/16/1991 14:35 CST EST mm/dd/yyyy
 
-```Dec 16 1991 13:00 UTC PST```
+Convertir una fecha completa a otra zona horaria y sumar n días
 
-```12/16/1991 17:00 UTC PST```
+Dec-16-1991 14:35 HST PST ADD 30 
 
-```16-12-1991 19:00 PST CST ADD 30 dd/mm/yyyy```
+Convertir una fecha completa a otra zona horaria sumar n días y especificar formato de salida 
 
-```December 16 1991 19:00 UTC 12/16/2016 18:00 PST```
+16 December 1991 14:35 CST PST ADD 30 mm/dd/yyyy
 
-```16-12-1991 19:00 UTC 12/16/2016 18:00 PST```
+Dec,16,1991 14:35 CST UTC ADD 20 dd/mm/yyyy
+
+Obtener el tiempo transcurrido entre dos fechas completas
+
+16,12-1991 19:00 UTC 12,16,2016 18:00 PST
